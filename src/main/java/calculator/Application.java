@@ -26,6 +26,17 @@ public class Application {
             return sum;
         }
 
+        // 기본 구분자
+        if (strInput.contains(",") || strInput.contains(":")) {
+            String basicValue = strInput.replace(",", ".").replace(":",".");
+            String[] strNumbers = basicValue.split("\\.");
+
+            for (String strNumber : strNumbers) {
+                sum += Integer.parseInt(strNumber);
+            }
+            return sum;
+        }
+
         // 엔터만 입력시 결과:0
         return sum;
     }
