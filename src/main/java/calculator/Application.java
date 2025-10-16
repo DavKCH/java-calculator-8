@@ -14,6 +14,25 @@ public class Application {
     private static int calculator(String strInput) {
         int sum = 0;
 
+        // == 예외 부분 start==
+        if (strInput == null) {
+            throw new IllegalArgumentException();
+        }
+
+        // n이 여러번 있을시
+        int index = strInput.indexOf('n');
+        int count = 0;
+        while (index >= 0) {
+            index = strInput.indexOf("n", index + 1);
+            count++;
+        }
+
+        String falseStr = ".*[a-mo-zA-Zㄱ-ㅎ가-힣].*";
+        if (strInput.contains("-") || strInput.matches(falseStr) || count >= 2 || strInput.startsWith("n") ) {
+            throw new IllegalArgumentException();
+        }
+        // == 예외 부분 end ==
+
         // 숫자만 입력 햇을때
         String trueNumbers ="[0-9]+";
         if (strInput.matches(trueNumbers)) {
@@ -42,6 +61,10 @@ public class Application {
             String[] split = strInput.split("n");
             String customValue = split[0].replace("//", "").replace("\\", "");
 
+            if(customValue.equals(",") || customValue.equals(":")) {
+                System.out.println("커스덤 구분자가 아닙니다. 프로그램을 종료 합니다.");
+                throw new IllegalArgumentException();
+            }
 
             String[] strNumbers = split[1].split( "\\"+ customValue); //구분 문자 처리하기 위해서 \\ 추가
             for (String strNumber : strNumbers) {
