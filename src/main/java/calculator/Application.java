@@ -16,6 +16,7 @@ public class Application {
 
         // == 예외 부분 start==
         if (strInput == null) {
+            System.out.println("잘못된 값을 입력 하셨습니다.");
             throw new IllegalArgumentException();
         }
 
@@ -29,6 +30,7 @@ public class Application {
 
         String falseStr = ".*[a-mo-zA-Zㄱ-ㅎ가-힣].*";
         if (strInput.contains("-") || strInput.matches(falseStr) || count >= 2 || strInput.startsWith("n") ) {
+            System.out.println("잘못된 값을 입력 하셨습니다.");
             throw new IllegalArgumentException();
         }
         // == 예외 부분 end ==
@@ -56,6 +58,7 @@ public class Application {
             return sum;
         }
 
+        //**\n1**2**3
         //커스텀 구분자
         if (strInput.startsWith("//") && strInput.contains("\\n")) {
             String[] split = strInput.split("n");
@@ -63,6 +66,11 @@ public class Application {
 
             if(customValue.equals(",") || customValue.equals(":")) {
                 System.out.println("커스덤 구분자가 아닙니다. 프로그램을 종료 합니다.");
+                throw new IllegalArgumentException();
+            }
+
+            if (customValue.length() >= 2){
+                System.out.println("커스덤 구분자는 1개만 가능 합니다.");
                 throw new IllegalArgumentException();
             }
 
