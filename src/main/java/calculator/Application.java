@@ -20,6 +20,12 @@ public class Application {
             throw new IllegalArgumentException();
         }
 
+        //음수 및 구분자 '-' 처리
+        if (strInput.contains("-")) {
+            System.out.println(" - (하이픈)은 입력 불가능 합니다.");
+            throw new IllegalArgumentException();
+        }
+
         // n이 여러번 있을시
         int index = strInput.indexOf("n");
         int count = 0;
@@ -29,7 +35,7 @@ public class Application {
         }
 
         String falseStr = ".*[a-mo-zA-Zㄱ-ㅎ가-힣].*";
-        if (strInput.contains("-") || strInput.matches(falseStr) || count >= 2 || strInput.startsWith("n") ) {
+        if (strInput.matches(falseStr) || count >= 2 || strInput.startsWith("n") ) {
             System.out.println("잘못된 값을 입력 하셨습니다.");
             throw new IllegalArgumentException();
         }
