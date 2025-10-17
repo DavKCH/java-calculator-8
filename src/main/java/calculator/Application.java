@@ -14,7 +14,7 @@ public class Application {
     private static int calculator(String strInput) {
         int sum = 0;
 
-        // == 예외 부분 start==
+        // null 예외
         if (strInput == null) {
             System.out.println("잘못된 값을 입력 하셨습니다.");
             throw new IllegalArgumentException();
@@ -89,7 +89,13 @@ public class Application {
             return sum;
         }
 
-        // 엔터만 입력시 결과:0
-        return sum;
+        // 엔터만 입력시, 및 값이 비어 있을시
+        if (strInput.isEmpty()) {
+            return sum;
+        }
+
+        // 못 잡은 예외.. ex) 1;2,3
+        System.out.println("잘못된 값을 입력 하셨습니다.");
+        throw new IllegalArgumentException();
     }
 }
