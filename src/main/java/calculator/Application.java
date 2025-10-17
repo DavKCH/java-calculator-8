@@ -21,7 +21,7 @@ public class Application {
         }
 
         // n이 여러번 있을시
-        int index = strInput.indexOf('n');
+        int index = strInput.indexOf("n");
         int count = 0;
         while (index >= 0) {
             index = strInput.indexOf("n", index + 1);
